@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from '../models/category.model';
 
 @Component({
   selector: 'app-category',
@@ -12,4 +13,11 @@ export class CategoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // categories =["Macera", "Romantik", "Bilim Kurgu", "Komedi"];
+  categories: Category[] = [
+    {id: 1, name: "Macera"},
+    {id: 1, name: "Romantik"},
+    {id: 1, name: "Bilim Kurgu"},
+    {id: 1, name: "Komedi"}
+  ]
 }
