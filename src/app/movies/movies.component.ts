@@ -13,6 +13,9 @@ export class MoviesComponent implements OnInit {
   popularMovies: Movie[];
   movieRepository: MovieRepository;
   title: string="Film Listesi"
+  today= new Date();
+
+  filterText: string = "";
 
   constructor() {
     this.movieRepository = new MovieRepository();
