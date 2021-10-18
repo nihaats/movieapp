@@ -10,21 +10,25 @@ import { MovieRepository } from '../models/movie.repository';
 export class MoviesComponent implements OnInit {
 
   movies: Movie[];
-  popularMovies: Movie[];
   movieRepository: MovieRepository;
   title: string="Film Listesi"
-  today= new Date();
-
   filterText: string = "";
+  filteredMovies: Movie[];
+
 
   constructor() {
     this.movieRepository = new MovieRepository();
     this.movies = this.movieRepository.getMovies();
-    this.popularMovies = this.movieRepository.getPopularMovies();
+    this.filteredMovies = this.movies;
   }
 
   ngOnInit(): void {
   }
 
+  onInputChange(){
+    return this.filteredMovies = this.filteredMovies ? this.movies.filter(m =>
+        m.title.toLowerCase().indexOf(this.filterText) != -1 ||
+        m.description.toLowerCase().indexOf(this.filterText) != -1) : this.movies;
+  }
 
 }
