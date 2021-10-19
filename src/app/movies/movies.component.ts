@@ -14,6 +14,7 @@ export class MoviesComponent implements OnInit {
   title: string="Film Listesi"
   filterText: string = "";
   filteredMovies: Movie[];
+  selectedMovie: Movie;
 
 
   constructor() {
@@ -29,6 +30,19 @@ export class MoviesComponent implements OnInit {
     return this.filteredMovies = this.filteredMovies ? this.movies.filter(m =>
         m.title.toLowerCase().indexOf(this.filterText) != -1 ||
         m.description.toLowerCase().indexOf(this.filterText) != -1) : this.movies;
+  }
+
+  addToList(value: any, movie: Movie){
+    if(value.classList.contains('btn-primary')){
+      value.innerText ="Listeden Çıkar"
+      value.classList.remove('btn-primary');
+      value.classList.add('btn-danger');
+    }
+    else{
+      value.innerText ="Listeye Ekle"
+      value.classList.remove('btn-danger');
+      value.classList.add('btn-primary');
+    }
   }
 
 }
