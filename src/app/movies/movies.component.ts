@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { MovieRepository } from '../models/movie.repository';
 
+declare let alertify: any;
+
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
@@ -37,11 +39,16 @@ export class MoviesComponent implements OnInit {
       value.innerText ="Listeden Çıkar"
       value.classList.remove('btn-primary');
       value.classList.add('btn-danger');
+
+      alertify.success(movie.title + ' listene eklendi.');
     }
     else{
       value.innerText ="Listeye Ekle"
       value.classList.remove('btn-danger');
       value.classList.add('btn-primary');
+
+      alertify.error(movie.title + ' listenden çıkarıldı.');
+
     }
   }
 
