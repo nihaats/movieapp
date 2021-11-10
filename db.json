@@ -1,0 +1,17 @@
+{
+  "movies": [
+    {"id": 1, "title": "Film 1", "description": "Film 1 açıklama", "imageUrl":"1.jpeg", "categoryId": 1},
+      {"id": 2, "title": "Film 2", "description": "Film 2 açıklama", "imageUrl":"2.jpeg", "categoryId": 2},
+      {"id": 3, "title": "Film 3", "description": "Film 3 açıklama", "imageUrl":"3.jpeg", "categoryId": 3},
+      {"id": 4, "title": "Film 4", "description": "Film 4 açıklama", "imageUrl":"4.jpeg", "categoryId": 3},
+      {"id": 5, "title": "Film 5", "description": "Film 5 açıklama", "imageUrl":"5.jpeg", "categoryId": 4},
+      {"id": 6, "title": "Film 6", "description": "Film 6 açıklama", "imageUrl":"1.jpeg", "categoryId": 4}
+  ],
+    "categories": [
+      {"id": 1, "name": "Macera"},
+      {"id": 2, "name": "Romantik"},
+      {"id": 3, "name": "Bilim Kurgu"},
+      {"id": 4, "name": "Komedi"},
+      {"id": 5, "name": "Savaş"}
+    ]
+}
