@@ -1,3 +1,7 @@
+<div class="alert alert-danger" *ngIf="error">
+  {{error}}
+</div>
+
 <div *ngIf="movies.length>0; else no_movies ">
   <h1 *ngIf="movies.length>0">{{title}}</h1>
 
@@ -38,7 +42,7 @@
           <p class="card-text">{{item.description | summary: 50}}</p>
           <p class="card-text">{{item.datePublished | date: 'dd/MM/y'}}</p>
           <div>
-            <button class="btn btn-sm btn-outline-primary">Details</button>
+            <a routerLink="/movies/{{item.id}}" class="btn btn-sm btn-outline-primary">Details</a>
             <button (click)="addToList($event.target, item)" class="btn btn-sm btn-primary sm-2">Listeye Ekle</button>
           </div>
         </div>
