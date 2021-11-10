@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../models/movie.model';
 import { MovieRepository } from '../models/movie.repository';
+import { MovieService } from '../services/movie.service';
 
 declare let alertify: any;
 
@@ -17,15 +19,31 @@ export class MoviesComponent implements OnInit {
   filterText: string = "";
   filteredMovies: Movie[];
   selectedMovie: Movie;
+  error: any;
 
 
-  constructor() {
+  constructor(
+    private movieService: MovieService,
+    private activatedRoute: ActivatedRoute
+    ) {
     this.movieRepository = new MovieRepository();
     this.movies = this.movieRepository.getMovies();
     this.filteredMovies = this.movies;
   }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      console.log("params: " + params["categoryId"]);
+      this.movieService.getMovies(params["categoryId"]).subscribe(data =>{
+      this.movies = data;
+      this.filteredMovies = this.movies;
+    }, error => this.error = error);
+    })
+
+  }
+
+  getMovies(){
+
   }
 
   onInputChange(){
