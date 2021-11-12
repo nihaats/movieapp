@@ -33,7 +33,6 @@ export class MoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      console.log("params: " + params["categoryId"]);
       this.movieService.getMovies(params["categoryId"]).subscribe(data =>{
       this.movies = data;
       this.filteredMovies = this.movies;

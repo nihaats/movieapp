@@ -13,6 +13,7 @@ import { SummaryPipe } from './pipes/summary.pipe';
 import { FormsModule } from '@angular/forms';
 import { MovieFilterPipe } from './pipes/movie-filter.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { MovieCreateComponent } from './movie-create/movie-create.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     SummaryPipe,
     MovieFilterPipe,
+    MovieCreateComponent,
 
   ],
   imports: [

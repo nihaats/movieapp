@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -29,6 +29,16 @@ export class MovieService {
     .pipe(tap(data => console.log(data)),
     catchError(this.handleError)
     );
+  }
+
+  createMovie(movie: Movie):Observable<Movie>{
+    const headers = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Token'
+      })
+    }
+    return this.http.post<Movie>(this.url, movie, headers)
   }
 
   private handleError(error: HttpErrorResponse){
