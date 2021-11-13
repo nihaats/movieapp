@@ -1,40 +1,36 @@
 <h1>Create Movie</h1>
 
-<form #form="ngForm" (ngSubmit)="createMovie()">
+<form [formGroup]="movieForm" (ngSubmit)="createMovie()">
   <div class="mb-3">
     <label for="title" class="form-label">Title</label>
-    <input required minlength="5" #title="ngModel" [(ngModel)]="movie.title" name="title" type="text" class="form-control">
+    <input name="title" type="text" class="form-control" formControlName="title">
     <div class="text-danger" *ngIf="title.invalid && title.touched">
-      Lütfen başlık giriniz
+      <p *ngIf="title.errors.required">Lütfen başlık giriniz</p>
+      <p *ngIf="title.errors.minlength">Min. 5 karakter giriniz</p>
     </div>
   </div>
 
   <div class="mb-3">
     <label for="description" class="form-label">Description</label>
-    <textarea required #description="ngModel" [(ngModel)]="movie.description" name="description" type="text" class="form-control"></textarea>
-    <div class="text-danger" *ngIf="description.invalid && description.touched">
-      Lütfen açıklama giriniz
-    </div>
+    <textarea name="description" type="text" class="form-control" formControlName="description"></textarea>
   </div>
 
   <div class="mb-3">
     <label for="imageUrl" class="form-label">ImageUrl</label>
-    <input required #imageUrl="ngModel" [(ngModel)]="movie.imageUrl" name="imageUrl"  type="text" class="form-control">
+    <input name="imageUrl"  type="text" class="form-control" formControlName="imageUrl">
     <div class="text-danger" *ngIf="imageUrl.invalid && imageUrl.touched">
-      Lütfen resim ismi giriniz
+      <p *ngIf="imageUrl.errors.required">Lütfen başlık giriniz</p>
+      <p *ngIf="imageUrl.errors.wrongExtension">Hatalı uzantı girdiniz.</p>
     </div>
   </div>
   <div class="mb-3">
     <label for="categoryId" class="form-label">Category</label>
-    <select required #categoryId="ngModel" [(ngModel)]="movie.categoryId" name="categoryId" class="form-select form-control">
+    <select name="categoryId" class="form-select" formControlName="categoryId">
       <option value="" disabled>Seçiniz</option>
       <option *ngFor="let item of categories" [value]="item.id">
         {{item.name}}
       </option>
     </select>
-    <div class="text-danger" *ngIf="categoryId.invalid && categoryId.touched">
-      Lütfen kategori seçiniz
-    </div>
   </div>
-  <button [disabled]="form.invalid" class="btn btn-primary" type="submit">Create</button>
+  <button class="btn btn-primary" type="submit">Create</button>
 </form>

@@ -44,12 +44,12 @@
     },
     {
       "id": 7,
-      "title": "başlık",
-      "description": "açıklama",
-      "imageUrl": "1.jpeg",
+      "title": "başlık Nikoo",
+      "description": "açıklama ",
+      "imageUrl": "2.jpeg",
       "isPopular": false,
-      "datePublished": 1636742986971,
-      "categoryId": "2"
+      "datePublished": 1636802755267,
+      "categoryId": "3"
     }
   ],
   "categories": [
