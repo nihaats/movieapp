@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieFilterPipe } from './pipes/movie-filter.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieCreateComponent } from './movie-create/movie-create.component';
+import { CategoryCreateComponent } from './category-create/category-create.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MovieCreateComponent } from './movie-create/movie-create.component';
     SummaryPipe,
     MovieFilterPipe,
     MovieCreateComponent,
+    CategoryCreateComponent,
 
   ],
   imports: [
