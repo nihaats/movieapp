@@ -2,33 +2,32 @@
   {{error}}
 </div>
 
-<div *ngIf="movies.length>0; else no_movies ">
-  <h1 *ngIf="movies.length>0">{{title}}</h1>
+<div *ngIf="!isLoadingMovies">
+  <div *ngIf="movies.length>0; else no_movies ">
+    <h1 *ngIf="movies.length>0">{{title}}</h1>
 
-  <div class="div alert alert-warning" *ngIf="movies.length>0">
-    {{filteredMovies.length}} adet film bulundu.
+    <div class="div alert alert-warning" *ngIf="movies.length>0">
+      {{filteredMovies.length}} adet film bulundu.
+    </div>
   </div>
-</div>
 
-<div class="mb-3">
-  <input
-    type="text"
-    class="form-control"
-    [(ngModel)]="filterText"
-    (ngModelChange)="onInputChange()"
-    placeholder="Search..."
-  >
-  <small class="text-muted" *ngIf="filterText">Aradığınız kelime: {{ filterText }}</small>
-</div>
-
-<!-- <ng-template [ngTemplateOutlet]="movieList2" [ngTemplateOutletContext]="{movies: popularMovies}" ></ng-template> -->
-<ng-template [ngTemplateOutlet]="movieList1"></ng-template>
-
-<ng-template #no_movies>
-  <div class="div alert alert-warning" *ngIf="movies.length==0">
-    Film Bulunamadı.
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="filterText"
+      (ngModelChange)="onInputChange()"
+      placeholder="Search..."
+    >
+    <small class="text-muted" *ngIf="filterText">Aradığınız kelime: {{ filterText }}</small>
   </div>
-</ng-template>
+
+  <ng-template #no_movies>
+    <div class="div alert alert-warning" *ngIf="movies.length==0">
+      Film Bulunamadı.
+    </div>
+  </ng-template>
+</div>
 
 <ng-template #movieList1>
   <div class="card mb-3" *ngFor="let item of filteredMovies">
@@ -50,34 +49,8 @@
   </div>
 </ng-template>
 
-<!-- <ng-template #movieList2 let-filmler="movies">
-  <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
-    <div class="col" *ngFor="let item of filmler">
-      <div class="card h-100">
-        <img src="/assets/img/{{ item.imageUrl }}" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title">{{ item.title }}</h5>
-          <p class="card-text">{{ item.description }}</p>
-        </div>
-      </div>
-    </div>
+<div *ngIf="isLoadingMovies" class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only"></span>
   </div>
-</ng-template>
-
-<ng-template #movieList3 let-populerFilmler="movies">
-  <h2>Popüler Filmler</h2>
-  <div class="card mb-3" *ngFor="let item of populerFilmler">
-    <div class="row">
-      <div class="col-md-3">
-        <img src="/assets/img/{{item.imageUrl}}" class="img-fluid rounded-start" alt="">
-      </div>
-      <div class="col-md-9">
-        <div class="card-body">
-          <h2 class="card-title">{{item.title}}</h2>
-          <p class="card-text">{{item.description}}</p>
-          <button class="btn btn-sm btn-outline-primary">Details</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</ng-template> -->
+</div>
