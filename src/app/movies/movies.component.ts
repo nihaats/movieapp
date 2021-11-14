@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { delay } from 'rxjs/operators';
 import { Movie } from '../models/movie.model';
 import { MovieRepository } from '../models/movie.repository';
 import { MovieService } from '../services/movie.service';
@@ -21,6 +22,7 @@ export class MoviesComponent implements OnInit {
   selectedMovie: Movie;
   error: any;
 
+  isLoadingMovies: boolean = false;
 
   constructor(
     private movieService: MovieService,
@@ -33,16 +35,16 @@ export class MoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
+      this.isLoadingMovies = true;
       this.movieService.getMovies(params["categoryId"]).subscribe(data =>{
-      this.movies = data;
-      this.filteredMovies = this.movies;
-    }, error => this.error = error);
+        this.isLoadingMovies = false;
+        this.movies = data;
+        this.filteredMovies = this.movies;
+      }, error => {
+        this.error = error;
+        this.isLoadingMovies = false;
+      });
     })
-
-  }
-
-  getMovies(){
-
   }
 
   onInputChange(){
