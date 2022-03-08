@@ -32,8 +32,7 @@ export class MovieService {
         return movies;
       }),
       tap(data => {}),
-    catchError(this.handleError),
-    delay(3000)
+    catchError(this.handleError)
     );
   }
 
