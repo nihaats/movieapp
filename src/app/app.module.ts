@@ -12,9 +12,11 @@ import { FooterComponent } from './footer/footer.component';
 import { SummaryPipe } from './pipes/summary.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieFilterPipe } from './pipes/movie-filter.pipe';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MovieCreateComponent } from './movie-create/movie-create.component';
 import { CategoryCreateComponent } from './category-create/category-create.component';
+import { AuthComponent } from './auth/auth.component';
+import { ErrorInterceptor } from './services/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { CategoryCreateComponent } from './category-create/category-create.compo
     MovieFilterPipe,
     MovieCreateComponent,
     CategoryCreateComponent,
+    AuthComponent,
 
   ],
   imports: [
@@ -38,7 +41,7 @@ import { CategoryCreateComponent } from './category-create/category-create.compo
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
